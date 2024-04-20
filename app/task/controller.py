@@ -33,13 +33,19 @@ def get_task(task_id):
 
 @task_bp.route('/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
-    data = request.json
+    try:
+        data = request.json
 
-    response = task_service.update_task(task_id, data)
-    return jsonify({'data': response})
+        response = task_service.update_task(task_id, data)
+        return jsonify({'data': response})
+    except TaskNotFoundError as e:
+        return error_formatter(404, str(e))
 
 
 @task_bp.route('/<int:task_id>', methods=['DELETE'])
 def delete_task(task_id):
-    response = task_service.delete_task(task_id)
-    return jsonify({'data': response})
+    try:
+        response = task_service.delete_task(task_id)
+        return jsonify({'data': response})
+    except TaskNotFoundError as e:
+        return error_formatter(404, str(e))

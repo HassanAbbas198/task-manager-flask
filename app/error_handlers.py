@@ -1,7 +1,7 @@
 from flask import jsonify
 
 
-def error_formatter(status_code, message='Something went wrong'):
+def error_formatter(status_code=400, message='Something went wrong'):
     payload = {
         'success': False,
         'status_code': status_code,
