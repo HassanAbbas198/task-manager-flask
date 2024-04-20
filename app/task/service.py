@@ -8,4 +8,5 @@ class TaskService:
         return self.task_repository.create_task(data)
 
     def get_tasks(self):
-        return {'data': [{'id': 1, 'title': 'Task 1'}, {'id': 2, 'title': 'Task 2'}]}
+        tasks = self.task_repository.get_tasks()
+        return {'data': tasks}
