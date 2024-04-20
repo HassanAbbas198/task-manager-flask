@@ -1,9 +1,7 @@
 from flask import Flask, Blueprint
-from flask_sqlalchemy import SQLAlchemy
-from app.task.controller import task_bp
 from config import Config
-
-db = SQLAlchemy()
+from .database.database import db
+from .task.controller import task_bp
 
 def create_app():
     app = Flask(__name__)
