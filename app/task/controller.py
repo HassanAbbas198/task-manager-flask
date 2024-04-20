@@ -7,9 +7,9 @@ task_service = TaskService()
 @task_bp.route('/', methods=['POST'])
 def create_task():
     data = request.json
-    task_service.create_task(data)
- 
-    return jsonify({'message': 'Task created successfully'}), 201
+    response = task_service.create_task(data)
+
+    return jsonify({'data': response}), 201
 
 @task_bp.route('/', methods=['GET'])
 def get_tasks():

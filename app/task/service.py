@@ -5,7 +5,9 @@ class TaskService:
         self.task_repository = TaskRepository()
 
     def create_task(self, data):
-        return self.task_repository.create_task(data)
+        self.task_repository.create_task(data)
+
+        return {'message': 'Task created successfully'}
 
     def get_tasks(self):
         tasks = self.task_repository.get_tasks()
