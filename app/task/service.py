@@ -27,3 +27,10 @@ class TaskService:
         self.task_repository.update_task()
 
         return {'message': 'Task updated successfully'}
+
+    def delete_task(self, task_id):
+        task = self.task_repository.get_task(task_id, False)
+
+        self.task_repository.delete_task(task)
+
+        return {'message': 'Task deleted successfully'}

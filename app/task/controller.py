@@ -28,6 +28,11 @@ def get_task(task_id):
 @task_bp.route('/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
     data = request.json
-    
+   
     response = task_service.update_task(task_id, data)
+    return jsonify({'data': response})
+
+@task_bp.route('/<int:task_id>', methods=['DELETE'])
+def delete_task(task_id):
+    response = task_service.delete_task(task_id)
     return jsonify({'data': response})

@@ -21,3 +21,7 @@ class TaskRepository:
 
     def update_task(self):
         db.session.commit()
+    
+    def delete_task(self, task):
+        db.session.delete(task)
+        db.session.commit()
