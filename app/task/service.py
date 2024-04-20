@@ -12,3 +12,7 @@ class TaskService:
     def get_tasks(self):
         tasks = self.task_repository.get_tasks()
         return {'data': tasks}
+
+    def get_task(self, task_id):
+        task = self.task_repository.get_task(task_id)
+        return task
