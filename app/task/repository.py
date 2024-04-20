@@ -1,6 +1,7 @@
 from app.database.database import db
 from .model import Task
 
+
 class TaskRepository:
     def create_task(self, data):
         task = Task(**data)
@@ -21,7 +22,7 @@ class TaskRepository:
 
     def update_task(self):
         db.session.commit()
-    
+
     def delete_task(self, task):
         db.session.delete(task)
         db.session.commit()

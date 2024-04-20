@@ -3,6 +3,7 @@ from config import Config
 from .database.database import db
 from .task.controller import task_bp
 
+
 def create_app():
     app = Flask(__name__)
 

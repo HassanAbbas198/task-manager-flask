@@ -1,0 +1,12 @@
+[flake8]
+max-line-length = 120
+ignore = E501
+exclude = .git,__pycache__
+
+[flake8]
+max-line-length = 110 
+import-order-style = google
+exclude = 
+  .git,
+  __pycache__
+  venv
