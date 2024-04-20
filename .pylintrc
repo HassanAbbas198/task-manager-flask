@@ -1,0 +1,14 @@
+[MASTER]
+load-plugins=pylint-flask, pylint-flask-sqlalchemy
+
+[MESSAGES CONTROL]
+disable=
+  C0114,
+  C0115,
+  C0116,
+
+enable=
+  W0621,
+  C0303,
+  W0703,
+  R1705
