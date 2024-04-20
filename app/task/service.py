@@ -1,5 +1,6 @@
 from .repository import TaskRepository
 
+
 class TaskService:
     def __init__(self):
         self.task_repository = TaskRepository()
