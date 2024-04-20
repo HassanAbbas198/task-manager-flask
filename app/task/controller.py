@@ -1,5 +1,7 @@
 from flask import Blueprint, jsonify, request
+from app.error_handlers import error_formatter
 from .service import TaskService
+from .exceptions import TaskNotFoundError
 
 task_bp = Blueprint('task', __name__)
 task_service = TaskService()
@@ -21,22 +23,29 @@ def get_tasks():
 
 @task_bp.route('/<int:task_id>', methods=['GET'])
 def get_task(task_id):
-    task = task_service.get_task(task_id)
-    if not task:
-        return jsonify({'error': 'Task not found'}), 404
+    try:
+        task = task_service.get_task(task_id)
+        return jsonify({'data': task})
 
-    return jsonify({'data': task}), 200
+    except TaskNotFoundError as e:
+        return error_formatter(404, str(e))
 
 
 @task_bp.route('/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
-    data = request.json
+    try:
+        data = request.json
 
-    response = task_service.update_task(task_id, data)
-    return jsonify({'data': response})
+        response = task_service.update_task(task_id, data)
+        return jsonify({'data': response})
+    except TaskNotFoundError as e:
+        return error_formatter(404, str(e))
 
 
 @task_bp.route('/<int:task_id>', methods=['DELETE'])
 def delete_task(task_id):
-    response = task_service.delete_task(task_id)
-    return jsonify({'data': response})
+    try:
+        response = task_service.delete_task(task_id)
+        return jsonify({'data': response})
+    except TaskNotFoundError as e:
+        return error_formatter(404, str(e))

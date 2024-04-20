@@ -1,4 +1,5 @@
 from .repository import TaskRepository
+from .exceptions import TaskNotFoundError
 
 
 class TaskService:
@@ -16,10 +17,16 @@ class TaskService:
 
     def get_task(self, task_id):
         task = self.task_repository.get_task(task_id)
+        if not task:
+            raise TaskNotFoundError(task_id)
+
         return task
 
     def update_task(self, task_id, data):
         task = self.task_repository.get_task(task_id, False)
+
+        if not task:
+            raise TaskNotFoundError(task_id)
 
         task.title = data.get('title')
         task.description = data.get('description')
@@ -31,6 +38,9 @@ class TaskService:
 
     def delete_task(self, task_id):
         task = self.task_repository.get_task(task_id, False)
+
+        if not task:
+            raise TaskNotFoundError(task_id)
 
         self.task_repository.delete_task(task)
 
