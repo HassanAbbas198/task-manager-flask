@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from .services import TaskService
+from .service import TaskService
 
 task_bp = Blueprint('task', __name__)
 task_service = TaskService()

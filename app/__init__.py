@@ -1,6 +1,6 @@
 from flask import Flask, Blueprint
 from flask_sqlalchemy import SQLAlchemy
-from app.task.controllers import task_bp
+from app.task.controller import task_bp
 from config import Config
 
 db = SQLAlchemy()
