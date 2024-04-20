@@ -17,4 +17,8 @@ def create_app():
     # Initialize Flask-SQLAlchemy
     db.init_app(app)
 
+    # Create the database tables
+    with app.app_context():
+        db.create_all()
+
     return app
