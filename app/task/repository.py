@@ -18,6 +18,9 @@ class TaskRepository:
 
         return serialized_tasks
 
-    def get_task(self, task_id):
+    def get_task(self, task_id, serialize=True):
         task = Task.query.get(task_id)
-        return task.serialize() if task else None
+        return task.serialize() if task and serialize else task
+
+    def update_task(self):
+        db.session.commit()

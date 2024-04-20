@@ -24,3 +24,10 @@ def get_task(task_id):
         return jsonify({'error': 'Task not found'}), 404
 
     return jsonify({'data': task}), 200
+
+@task_bp.route('/<int:task_id>', methods=['PUT'])
+def update_task(task_id):
+    data = request.json
+    
+    response = task_service.update_task(task_id, data)
+    return jsonify({'data': response})
